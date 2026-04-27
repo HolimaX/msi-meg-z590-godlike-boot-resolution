@@ -26,7 +26,7 @@ jobs:
           grep -q 'GRUB_GFXPAYLOAD_LINUX=' fedora/grub/grub-default-after
 
       - name: Run shell scripts through shellcheck
-        uses: ludeeus/action-shellcheck@v2
+        uses: ludeeus/action-shellcheck@main
         with:
           scandir: .
           severity: warning
