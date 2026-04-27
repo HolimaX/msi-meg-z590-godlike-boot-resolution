@@ -1,0 +1,41 @@
+name: Validate boot diagnostics repo
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          test -f README.md
+          test -f MSI_SUPPORT.md
+          test -f fedora/grub/grub-default-after
+          test -f tests/test-gop-modes.sh
+
+      - name: Validate GRUB config syntax (basic)
+        run: |
+          grep -q 'GRUB_TERMINAL_OUTPUT="gfxterm"' fedora/grub/grub-default-after
+          grep -q 'GRUB_GFXMODE=' fedora/grub/grub-default-after
+          grep -q 'GRUB_GFXPAYLOAD_LINUX=' fedora/grub/grub-default-after
+
+      - name: Run shell scripts through shellcheck
+        uses: ludeeus/action-shellcheck@v2
+        with:
+          scandir: .
+          severity: warning
+
+      - name: Validate Python script
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run Python syntax check
+        run: |
+          python -m py_compile collect_msi_gop_diagnostics.py
