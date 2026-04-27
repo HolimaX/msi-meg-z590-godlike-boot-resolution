@@ -144,10 +144,11 @@ This ensures consistent handling and prevents repeated explanations.
 
 ## Closing Note
 
-This repository is not intended as criticism.  
+This repository is not intended as suggestion, but rather clear and factual criticism of not doping proper support to custoemrs for PREMIUM PRODUCTS!!!
+
 It is a **technical, reproducible, engineering‑ready** package designed to help  
 MSI identify and fix a firmware issue that affects users with modern monitors  
-and DisplayPort connections.
+and HDMI/DisplayPort connections.
 
 We appreciate MSI’s attention and look forward to collaborating on a fix.
 
